@@ -43,6 +43,14 @@ function displayHighscore(highscore) {
   document.querySelector('.highscore').textContent = highscore;
 }
 
+function setBodyBackground(color) {
+  document.querySelector('body').style.backgroundColor = color;
+}
+
+function secretNumberFieldWidth(width) {
+  document.querySelector('.number').style.width = width;
+}
+
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
   console.log(guess, typeof guess);
@@ -51,6 +59,9 @@ document.querySelector('.check').addEventListener('click', function () {
     displayMessage('⛔️ Invalid! Try again with a number between 1 and 20!');
   } else if (guess === secretNumber) {
     displayMessage('🎉 You won!');
+    setBodyBackground('#60b347');
+    secretNumberFieldWidth('30rem');
+
     if (score > highscore) {
       highscore = score;
       displayHighscore(highscore);
