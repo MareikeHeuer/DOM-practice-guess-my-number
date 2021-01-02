@@ -28,3 +28,22 @@ function calculateSecretNumber() {
 }
 
 calculateSecretNumber();
+
+function displayMessage(message) {
+  document.querySelector('.message').textContent = message;
+}
+
+document.querySelector('.check').addEventListener('click', function () {
+  const guess = Number(document.querySelector('.guess').value);
+  console.log(guess, typeof guess);
+
+  if (guess < 1 || guess > 20) {
+    displayMessage('⛔️ Invalid! Try again with a number between 1 and 20!');
+  } else if (guess === secretNumber) {
+    displayMessage('🎉 You won!');
+  } else if (guess > secretNumber) {
+    displayMessage('📈 Too high!');
+  } else if (guess < secretNumber) {
+    displayMessage('📉 Too low!');
+  }
+});
