@@ -21,6 +21,7 @@
 // The user input has to be converted to a number
 
 let secretNumber = 0;
+let score = 20;
 
 function calculateSecretNumber() {
   secretNumber = Math.trunc(Math.random() * 20 + 1);
@@ -33,6 +34,10 @@ function displayMessage(message) {
   document.querySelector('.message').textContent = message;
 }
 
+function displayScore(score) {
+  document.querySelector('.score').textContent = score;
+}
+
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
   console.log(guess, typeof guess);
@@ -42,8 +47,22 @@ document.querySelector('.check').addEventListener('click', function () {
   } else if (guess === secretNumber) {
     displayMessage('🎉 You won!');
   } else if (guess > secretNumber) {
-    displayMessage('📈 Too high!');
+    if (score > 1) {
+      displayMessage('📈 Too high!');
+      score--;
+      displayScore(score);
+    } else {
+      displayMessage('💥 You lost!');
+      displayScore(0);
+    }
   } else if (guess < secretNumber) {
-    displayMessage('📉 Too low!');
+    if (score > 1) {
+      displayMessage('📉 Too low!');
+      score--;
+      displayScore(score);
+    } else {
+      displayMessage('💥 You lost!');
+      displayScore(0);
+    }
   }
 });
