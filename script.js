@@ -46,18 +46,9 @@ document.querySelector('.check').addEventListener('click', function () {
     displayMessage('⛔️ Invalid! Try again with a number between 1 and 20!');
   } else if (guess === secretNumber) {
     displayMessage('🎉 You won!');
-  } else if (guess > secretNumber) {
+  } else {
     if (score > 1) {
-      displayMessage('📈 Too high!');
-      score--;
-      displayScore(score);
-    } else {
-      displayMessage('💥 You lost!');
-      displayScore(0);
-    }
-  } else if (guess < secretNumber) {
-    if (score > 1) {
-      displayMessage('📉 Too low!');
+      displayMessage(guess > secretNumber ? '📈 Too high!' : '📉 Too low!');
       score--;
       displayScore(score);
     } else {
