@@ -19,3 +19,12 @@
 // Display secretNumber in console
 // Add eventListener to check button and display user input in the console
 // The user input has to be converted to a number
+
+let secretNumber = 0;
+
+function calculateSecretNumber() {
+  secretNumber = Math.trunc(Math.random() * 20 + 1);
+  console.log(secretNumber);
+}
+
+calculateSecretNumber();
