@@ -77,3 +77,13 @@ document.querySelector('.check').addEventListener('click', function () {
     }
   }
 });
+
+document.querySelector('.again').addEventListener('click', function () {
+  score = 20;
+  displayScore(score);
+  calculateSecretNumber();
+  setBodyBackground('#222');
+  secretNumberFieldWidth('35rem');
+
+  displayMessage('Start guessing...');
+});
