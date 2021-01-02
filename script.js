@@ -22,6 +22,7 @@
 
 let secretNumber = 0;
 let score = 20;
+let highscore = 0;
 
 function calculateSecretNumber() {
   secretNumber = Math.trunc(Math.random() * 20 + 1);
@@ -38,6 +39,10 @@ function displayScore(score) {
   document.querySelector('.score').textContent = score;
 }
 
+function displayHighscore(highscore) {
+  document.querySelector('.highscore').textContent = highscore;
+}
+
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
   console.log(guess, typeof guess);
@@ -46,6 +51,10 @@ document.querySelector('.check').addEventListener('click', function () {
     displayMessage('⛔️ Invalid! Try again with a number between 1 and 20!');
   } else if (guess === secretNumber) {
     displayMessage('🎉 You won!');
+    if (score > highscore) {
+      highscore = score;
+      displayHighscore(highscore);
+    }
   } else {
     if (score > 1) {
       displayMessage(guess > secretNumber ? '📈 Too high!' : '📉 Too low!');
