@@ -23,13 +23,26 @@
 let secretNumber = 0;
 let score = 20;
 let highscore = 0;
+const LIMIT = 20;
 
-function calculateSecretNumber() {
-  secretNumber = Math.trunc(Math.random() * 20 + 1);
-  console.log(secretNumber);
+function initialization() {
+  score = LIMIT;
+  displayScore(score);
+  calculateSecretNumber();
+  setBodyBackground('#222');
+  secretNumberFieldWidth('35rem');
+
+  displayMessage('Start guessing...');
 }
 
-calculateSecretNumber();
+initialization();
+
+displayHighscore(highscore);
+
+function calculateSecretNumber() {
+  secretNumber = Math.trunc(Math.random() * LIMIT + 1);
+  console.log(secretNumber);
+}
 
 function displayMessage(message) {
   document.querySelector('.message').textContent = message;
@@ -55,7 +68,7 @@ document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
   console.log(guess, typeof guess);
 
-  if (guess < 1 || guess > 20) {
+  if (guess < 1 || guess > LIMIT) {
     displayMessage('⛔️ Invalid! Try again with a number between 1 and 20!');
   } else if (guess === secretNumber) {
     displayMessage('🎉 You won!');
@@ -78,12 +91,4 @@ document.querySelector('.check').addEventListener('click', function () {
   }
 });
 
-document.querySelector('.again').addEventListener('click', function () {
-  score = 20;
-  displayScore(score);
-  calculateSecretNumber();
-  setBodyBackground('#222');
-  secretNumberFieldWidth('35rem');
-
-  displayMessage('Start guessing...');
-});
+document.querySelector('.again').addEventListener('click', initialization);
